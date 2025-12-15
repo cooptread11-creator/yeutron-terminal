@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeutron Terminal // Operation Evolution</title>
+<style>
+body {
+  background: radial-gradient(circle at center, #0a0a0a 60%, #000);
+  color: #00ffcc;
+  font-family: 'Courier New', monospace;
+  padding: 20px;
+  text-shadow: 0 0 5px #00ffcc;
+  position: relative;
+}
+.terminal {
+  border: 1px solid #00ffcc;
+  padding: 20px;
+  margin: 20px 0;
+  background: rgba(0, 10, 10, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ffcc55;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+input {
+  background: black;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  padding: 8px;
+  width: 200px;
+  margin-right: 10px;
+}
+button {
+  background:#ff00ff;
+  color:#0a0a0a;
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+  border-radius:5px;
+}
+button:hover {
+  background:#ff33ff;
+  box-shadow:0 0 10px #ff00ff;
+}
+.hidden { display:none; }
+.warning { color:#ff00ff; font-weight:bold; }
+.hint { color:#ffff00; font-style:italic; margin-top:5px; }
+@keyframes flicker { 0% { opacity:1; transform: translate(0,0); } 10% { opacity:0.7; transform: translate(-1px,1px); } 20% { opacity:1; transform: translate(1px,-1px); } 30% { opacity:0.5; transform: translate(-1px,0); } 40% { opacity:1; transform: translate(0,1px); } 50% { opacity:0.6; transform: translate(1px,1px); } 60% { opacity:1; transform: translate(0,-1px); } 70% { opacity:0.7; transform: translate(-1px,1px); } 80% { opacity:1; transform: translate(1px,0); } 90% { opacity:0.5; transform: translate(-1px,-1px); } 100% { opacity:1; transform: translate(0,0); } }
+.locked {
+  animation: flicker 0.2s infinite;
+  background: linear-gradient(90deg, #000 0%, #0ff 50%, #000 100%);
+  color: #ff00ff;
+}
+.terminal::before {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: repeating-linear-gradient(0deg, rgba(0,255,255,0.05) 0px, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 3px);
+  pointer-events:none;
+  z-index:0;
+  animation: scanline 0.5s linear infinite;
+  border-radius: 10px;
+}
+@keyframes scanline { 0% { background-position: 0 0; } 100% { background-position: 0 100%; } }
+.terminal h2:hover { animation: flicker 0.1s infinite; }
+</style>
+</head>
+<body>
+
+<audio id="ambientSound" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0a6f22367b.mp3?filename=cyberpunk-ambient-112127.mp3" type="audio/mpeg">
+</audio>
+
+<h1>Yeutron Secure Terminal // Access Required</h1>
+<p class="warning">⚠️ Unauthorized access detected. You have <b>three attempts</b> per sequence before lockout.</p>
+
+<!-- Puzzle 1 -->
+<div id="puzzle1" class="terminal">
+  <h2>Access Layer 1: Encrypted Fragment</h2>
+  <p><i>01001100 01101111 01110110 01100101 — The symbol of unity that bridges code and feeling. Find the word that survives the noise.</i></p>
+  <input id="answer1" placeholder="Enter code...">
+  <button onclick="checkAnswer(1)">Submit</button>
+  <button onclick="showHint(1)">Show Hint</button>
+  <p id="hint1" class="hint hidden" data-count="0"></p>
+  <p id="feedback1"></p>
+</div>
+
+<!-- Puzzle 2 -->
+<div id="puzzle2" class="terminal hidden">
+  <h2>Access Layer 2: The Echo of Thought</h2>
+  <p>A word that means <i>the opposite of compassion</i>.<br>It thrives in those who gaze upon the world and feel only disgust.<br><br>Decode the file labeled: <b>“HUMANITY.EXE — corrupted”</b>.</p>
+  <input id="answer2" placeholder="Enter code...">
+  <button onclick="checkAnswer(2)">Submit</button>
+  <button onclick="showHint(2)">Show Hint</button>
+  <p id="hint2" class="hint hidden" data-count="0"></p>
+  <p id="feedback2"></p>
+</div>
+
+<!-- Puzzle 3 -->
+<div id="puzzle3" class="terminal hidden">
+  <h2>Access Layer 3: Final Protocol</h2>
+  <p>The word that defines change itself.<br>The program's name whispers it.<br>The city will become it.</p>
+  <input id="answer3" placeholder="Enter code...">
+  <button onclick="checkAnswer(3)">Submit</button>
+  <button onclick="showHint(3)">Show Hint</button>
+  <p id="hint3" class="hint hidden" data-count="0"></p>
+  <p id="feedback3"></p>
+</div>
+
+<!-- Final Reveal -->
+<div id="final" class="terminal hidden">
+  <h2>OPERATION: EVOLUTION</h2>
+  <p style="text-align:center; color:#ff33ff; font-weight:bold; font-size:1.2em; text-shadow:0 0 10px #ff00ff; margin:30px 0;">
+We need to get the gate working before we start reshaping the antediluvian beings. It wants to witness the first spark of evolution before moving forward with the expansion. What happens to the lesser pests is important for the gestalt consciousness. Once the operation begins and the spread takes hold, It expects the subject to arrive. Strong enough to open the gate. The pureblood has to stay alive and remain by Its side; their importance to It can’t be overstated.
+  </p>
+  <p>
+“Cybratix is not merely a cure. It is a catalyst. Spread through medicine, it touches the lives of many — rewriting, reshaping, evolving. Fixing society. Fixing the rats. Adaptable, resilient, perfect carriers for what comes next.”<br><br>
+“But evolution cannot begin without perfection. A specimen is needed. One flawless host to synchronize with Cybratix, ensuring total compatibility. Only then can the next stage unfold.”<br><br>
+“When X takes hold, those with it in their system become… something else. Zombies, driven to infect others through close contact, spreading the exoskeleton that overtakes mind and body. Some resist. Some succumb. The Subjects… they were released because their bodies can withstand the effects. Most, however, attack those without augmentation, driven only by the viral compulsion. A few untouched, but do not attack — hidden gears and synthetic parts granting immunity, concealing their true nature.”<br><br>
+“X still isn't ready. Its effects are unpredictable. Class, mutation, survival — all vary from person to person. But the ultimate goal remains unchanged: create perfection, transformation, evolution. vessels for the next stage.”<br><br>
+<i>CALEGEAR IS GOD. ALL WILL ASCEND TO IT.</i>
+  </p>
+</div>
+
+<!-- Restart Option -->
+<div class="terminal">
+  <h2>System Control</h2>
+  <p>If you wish to restart the sequence and erase all stored progress, you may reset the terminal.</p>
+  <button onclick="resetProgress()">Restart Terminal</button>
+</div>
+
+<script>
+let attempts = JSON.parse(localStorage.getItem('yeutronAttempts')) || {1:3,2:3,3:3};
+let progress = JSON.parse(localStorage.getItem('yeutronProgress')) || 0;
+
+function saveState(){
+  localStorage.setItem('yeutronProgress', JSON.stringify(progress));
+  localStorage.setItem('yeutronAttempts', JSON.stringify(attempts));
+}
+
+function resetProgress() {
+  if (confirm("Are you sure you want to restart the Yeutron Terminal? All progress will be lost.")) {
+    localStorage.removeItem('yeutronProgress');
+    localStorage.removeItem('yeutronAttempts');
+    attempts = {1:3,2:3,3:3};
+    progress = 0;
+    saveState();
+    location.reload();
+  }
+}
+
+function checkAnswer(num){
+  const input = document.getElementById(`answer${num}`).value.trim().toLowerCase();
+  const feedback = document.getElementById(`feedback${num}`);
+  const correctAnswers = {1:"love", 2:"misanthropy", 3:"evolution"};
+
+  if(attempts[num] <= 0){
+    feedback.textContent = "⚠️ Terminal locked. No more attempts.";
+    feedback.style.color = "#ff00ff";
+    const puzzleDiv = document.getElementById(`puzzle${num}`);
+    puzzleDiv.classList.add('locked');
+    document.getElementById(`answer${num}`).disabled = true;
+    puzzleDiv.querySelector('button').disabled = true;
+    return;
+  }
+
+  if(input === correctAnswers[num]){
+    feedback.textContent = "Access Granted.";
+    feedback.style.color = "#00ffcc";
+    unlockNext(num);
+  } else {
+    attempts[num]--;
+    feedback.textContent = attempts[num] > 0 ? `Access Denied. ${attempts[num]} attempts remaining.` : "⚠️ Terminal locked. No more attempts.";
+    feedback.style.color = "#ff00ff";
+    if(attempts[num] <= 0){
+      const puzzleDiv = document.getElementById(`puzzle${num}`);
+      puzzleDiv.classList.add('locked');
+      document.getElementById(`answer${num}`).disabled = true;
+      puzzleDiv.querySelector('button').disabled = true;
+    }
+  }
+  saveState();
+}
+
+function unlockNext(num){
+  progress = num;
+  saveState();
+  document.getElementById(`puzzle${num}`).classList.add('hidden');
+  if(num < 3){
+    document.getElementById(`puzzle${num+1}`).classList.remove('hidden');
+  } else {
+    document.getElementById('final').classList.remove('hidden');
+  }
+}
+
+const hints = {
+  1: ["It’s something that connects people.", "It starts with 'L' and ends with 'E'.", "It can survive chaos and corruption."],
+  2: ["It is the opposite of compassion.", "It starts with 'M'.", "It is a deep dislike for humanity."],
+  3: ["It defines change.", "It is the ultimate outcome of Cybratix.", "It starts with 'E' and ends with 'N'."]
+};
+
+function showHint(num){
+  const hintArea = document.getElementById(`hint${num}`);
+  const count = parseInt(hintArea.dataset.count) || 0;
+  if(count < hints[num].length){
+    hintArea.textContent = hints[num][count];
+    hintArea.classList.remove('hidden');
+    hintArea.dataset.count = count + 1;
+  } else {
+    hintArea.textContent = "No more hints available for this puzzle.";
+  }
+}
+
+window.onload = function(){
+  ['puzzle1','puzzle2','puzzle3','final'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  ['hint1','hint2','hint3'].forEach(id => { const el=document.getElementById(id); if(el&&!el.dataset.count) el.dataset.count='0'; });
+  if(progress === 0) document.getElementById('puzzle1').classList.remove('hidden');
+  else if(progress === 1) document.getElementById('puzzle2').classList.remove('hidden');
+  else if(progress === 2) document.getElementById('puzzle3').classList.remove('hidden');
+  else if(progress === 3) document.getElementById('final').classList.remove('hidden');
+  const ambient=document.getElementById('ambientSound'); if(ambient) ambient.volume=0.15;
+};
+</script>
+</body>
+</html>
